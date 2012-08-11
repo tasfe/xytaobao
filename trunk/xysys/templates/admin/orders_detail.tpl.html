@@ -1,0 +1,141 @@
+<!--{include file='header'}-->
+
+<div style="width:620px;margin:20px 0 0 0; text-align:right;">
+  <a href="javascript:void(0)" onclick="javascript:window.print();" >打印</a>
+</div>
+<div class="t" style="width:600px; margin:20px; clear:both;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr class="tr4">
+      <td style="text-align:left"> 帳單信息 </td>
+    </tr>
+  </table>
+
+  <table width="556" >
+    <tr>
+      <td width="136" height="20">訂單號</td>
+      <td width="408"><!--{$doc.id|orderno:7:"H"}--></td>
+    </tr>
+    <tr>
+      <td height="20">金額</td>
+      <td><!--{$doc.amount|money}--></td>
+    </tr>
+    <tr>
+      <td height="20">刊登時間</td>
+      <td><!--{$doc.ad_time}-->天</td>
+    </tr>
+    <tr>
+      <td height="20">支付方式</td>
+      <td><!--{if $doc.paymethod==1}-->
+        支票/現金支票
+        <!--{else}-->
+        信用卡
+        <!--{/if}--></td>
+    </tr>
+    <!--{if $doc.paymethod == 2}-->
+ 
+      <tr>
+        <td ><div align="left">信用卡上的名字 </div></td>
+        <td height="20"><div align="left">
+            <!--{$doc.cardname}-->
+                     </div></td>
+      </tr>
+      <tr>
+        <td height="20"><div align="left">信用卡類型</div></td>
+        <td ><div align="left">
+        <!--{if $doc.cardtype ==1}-->Visa<!--{else}-->Master Card<!--{/if}-->
+
+          </div></td>
+      </tr>
+      <tr>
+        <td height="20"><div align="left">信用卡號碼</div></td>
+        <td><div align="left">
+           <!--{$doc.card}-->
+          </div></td>
+      </tr>
+      <tr>
+        <td height="20"><div align="left">有效日期</div></td>
+        <td><div align="left">
+        <!--{$doc.cardmonth}-->
+            
+            月
+            <!--{$doc.cardyear}-->
+           
+            年</div></td>
+      </tr>
+      <tr>
+        <td height="20"><div align="left">確認號碼</div></td>
+        <td ><div align="left">
+        <!--{$doc.card3}-->
+            
+            </div></td>
+      </tr>
+<tr>
+        <td height="20"><div align="left">門牌號碼</div></td>
+        <td ><div align="left">
+        <!--{$doc.carddoor}-->
+            
+            </div></td>
+      </tr><tr>
+        <td height="20"><div align="left">郵遞區號</div></td>
+        <td ><div align="left">
+        <!--{$doc.cardzipcode}-->
+            
+            </div></td>
+      </tr>
+    <!--{/if}-->
+  </table>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr class="tr4">
+      <td style="text-align:left"> 廣告信息 </td>
+    </tr>
+  </table>
+  
+  <table width="556" >
+    <tr>
+      <td width="136" height="20">廣告號</td>
+      <td width="408"><!--{$ai.ad_no|orderno:6:$ai.ad_type}--></td>
+    </tr>
+    <tr>
+      <td height="20">廣告類型</td>
+      <td><!--{$ai.adtype}--></td>
+    </tr>
+    <!--{if $ai.endtime}-->
+    <tr>
+      <td height="20">開始日</td>
+      <td><!--{$ai.passtime|date_format:"%m/%d/%Y"}--></td>
+    </tr>
+    <tr>
+      <td height="20">到期日</td>
+      <td><!--{$ai.endtime|date_format:"%m/%d/%Y"}--></td>
+    </tr>
+    <!--{/if}-->
+  </table>
+  
+   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr class="tr4">
+      <td style="text-align:left"> 用戶信息 </td>
+    </tr>
+  </table>
+  
+  <table width="556" >
+    <tr>
+      <td width="136" height="20">帳戶</td>
+      <td width="408"><!--{$ui.username}--></td>
+    </tr>
+    <tr>
+      <td height="20">郵箱</td>
+      <td><!--{$ui.email}--></td>
+    </tr>
+
+  </table>
+  
+  <br />
+  <table >
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+<!--{include file='footer'}-->

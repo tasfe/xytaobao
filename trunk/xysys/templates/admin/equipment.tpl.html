@@ -1,0 +1,220 @@
+<!--{include file='header'}-->
+
+<!--{if $act == 'add' or $act=='edit'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    Add
+    <!--{else}-->
+    Edit
+    <!--{/if}-->
+    Products</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+</div>
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<form action="<!--{$admin_file}-->?adm=games&opt=equipment_do" method="post" name="FORM" enctype="multipart/form-data">
+<table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+<tr>
+  <td width="10%" class="main_bleft">Category:</td>
+  <td width="27%" align="left" class="main_bright"><select name="gid" onchange="getservice(this.value,0)">
+      <option value="0">Please choose</option>
+      <!--{foreach from=$games item=d}-->
+      <option value="<!--{$d.id}-->"  <!--{if $doc.gid==$d.id}--> selected<!--{/if}-->>
+      <!--{$d.gname}-->
+      </option>
+      <!--{/foreach}-->
+    </select></td>
+  <td width="13%" class="main_bleft">Sub-category:</td>
+  <td width="50%" align="left" class="main_bright">
+  <div id="allservice">
+    <select name="sid" >
+      <option value="0">Please choose</option>
+    </select></div></td>
+</tr>
+
+
+
+<tr>
+  <td class="main_bleft">Product Name:</td>
+  <td class="main_bright" align="left" colspan="3"><input  type="text" name="ename" size="150" value="<!--{$doc.ename}-->"></td>
+  
+  </tr>
+   <tr>
+        <td class="main_bleft">Show home page</td>
+        <td class="main_bright"  colspan="3"><input type="radio" name="istop" <!--{if $doc.istop==1}--> checked<!--{/if}-->  value="1">Yes <input type="radio" name="istop" <!--{if $doc.istop==0}--> checked<!--{/if}-->  value="0">No</td>
+
+
+        
+      </tr>
+      
+      <tr>
+        <td class="main_bleft">Place</td>
+        <td class="main_bright"  colspan="3"><input  type="text" name="place" size="20" value="<!--{$doc.place}-->"></td>
+
+
+        
+      </tr>
+       <tr>
+        <td class="main_bleft">Price</td>
+        <td class="main_bright"  colspan="3"><input  type="text" name="price" size="20" value="<!--{$doc.price}-->"></td>
+
+
+        
+      </tr>
+   <tr>
+        <td class="main_bleft">Images</td>
+        <td class="main_bright" colspan="3">
+		<input type="file" name="upfile[]" size="40" />
+<img src="<!--{$doc.image}-->" width="60" height="60">
+<br />
+
+
+</td>
+      </tr>
+   <tr>
+        <td class="main_bleft">Summary:</td>
+        <td class="main_bright" colspan="3"><textarea name="summary"  ><!--{$doc.summary}--></textarea></td>
+      </tr>
+      <script language="javascript">
+            var oFCKeditor = new FCKeditor( 'summary' ) ;
+            oFCKeditor.Height = 150;
+            oFCKeditor.ToolbarSet	= 'Summary' ;
+            oFCKeditor.ReplaceTextarea() ;
+        </script>
+        
+         <tr>
+        <td class="main_bleft">Description:</td>
+        <td class="main_bright" colspan="3"><textarea name="description" ><!--{$doc.description}--></textarea></td>
+      </tr>
+      <script language="javascript">
+            var oFCKeditor = new FCKeditor( 'description' ) ;
+            oFCKeditor.Height = 230;
+            oFCKeditor.ToolbarSet	= 'Jiu' ;
+            oFCKeditor.ReplaceTextarea() ;
+        </script>
+      
+      
+<tr>
+  <td colspan="4" class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+        <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+        <input type="submit" name="Submit" value="Save" class="btn"/>
+        <input type="reset" name="Submit2" value="Reset" class="btn" /></td>
+</tr>
+
+</table>
+</form>
+        
+<!--{else}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Products List</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=games&opt=equipment&act=add" >add</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+        <div align="left">
+              <form action="#" method="post">
+                Select Category:
+                <select name="gid" onchange="goserviceurl(this.value)">
+                  <option value="0">View All Products</option>
+                  <!--{foreach from=$games item=d}-->
+                  <option value="<!--{$d.id}-->" 
+            
+                  <!--{if $gid==$d.id}-->
+                  
+            selected
+            
+                  <!--{/if}-->
+                  >
+                  <!--{$d.gname}-->
+                  </option>
+                  <!--{/foreach}-->
+                </select>
+              </form>
+            </div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+
+        <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="background:#E2F5BC;">
+          <tr class="tr2">
+            <td width="15%">No.</td> 
+            <td>图片 </td>
+            <td>商品名称 </td>
+            <td>淘宝商品ID </td>
+            <td>等级 </td>
+            <td>分类名称 </td>
+            <td>价格</td>
+            <td>Operate</td>
+          </tr>
+          <!--{foreach from=$docs item=d}-->
+          <tr class="listtr" id="tr_<!--{$d.id}-->" >
+            <td><!--{$d.id}--></td>
+            
+            <td align="left"><!--{if $d.image}--><img src="<!--{$d.image}-->" width="60" height="60"> <!--{/if}-->           &nbsp;</td>
+            <td align="left"><!--{$d.ename}-->&nbsp;</td>
+            <td ><!--{$d.tb_iid}-->&nbsp;</td>
+            <td ><img src="img/level_<!--{$d.seller_credit_score}-->.gif" /></td>
+            <td><!--{$d.gname}-->&nbsp;</td>
+            <td><!--{$d.price}-->&nbsp;</td>
+            <td><a href="<!--{$admin_file}-->?adm=games&opt=equipment&act=edit&id=<!--{$d.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="javascript:void(0)" onclick="dodel(<!--{$d.id}-->)"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a> &nbsp; </td>
+          </tr>
+          <!--{/foreach}-->
+        </table>
+     
+          <!--{$pages}-->
+ 
+
+<!--{/if}-->
+
+<script language="javascript">
+
+
+	function goserviceurl(id){
+			window.location="<!--{$admin_file}-->?adm=games&opt=equipment&gid="+id;
+	}
+
+
+
+var url = "?adm=games&opt=gold";
+	function getservice(id,sid){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=getservices&id="+id+"&sid="+sid,
+			success: function(msg){     $("#allservice").html(msg);    }
+		});
+	}
+
+  function dodel(id){
+	if(confirm('<!--{$lang.conf_del}-->')){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=equipment&act=dele&id="+id,
+			success: function(msg){   if( msg == 1 ) { $("#tr_"+id).hide();alert("<!--{$lang.success_del}-->"); }   }
+		});
+	}
+  }
+
+
+
+<!--{if $doc.gid}--> 
+getservice(<!--{$doc.gid}-->,<!--{$doc.sid}-->);
+<!--{/if}-->
+  </script>
+  
+<!--{include file='footer'}-->

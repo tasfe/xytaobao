@@ -1,0 +1,19 @@
+
+<table border="1">
+
+<tr>
+<td>时间</td>
+<td>用户</td>
+<td>动作</td>
+<td>摘要</td>
+</tr>
+
+<!--{foreach from=$docs item=d}-->
+<tr>
+<td><!--{$d.addtime}--></td>
+<td><!--{$d.user}--></td>
+<td><!--{$d.act}--></td>
+<td><!--{$d.logs}--></td>
+</tr>
+<!--{/foreach}-->
+</table>

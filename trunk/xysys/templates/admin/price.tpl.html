@@ -1,0 +1,146 @@
+<!--{include file='header'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">游戏价格时间</div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        <form method="post" name="pdata">
+        <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="100%" style="margin-top: 6px;">
+          <tr>
+            <td class="main_bleft">游戏:</td>
+            <td class="main_bright" align="left"><select name="gid" onchange="getprice(this.value)">
+              <option value="0">请选择</option>
+              <!--{foreach from=$games item=d}-->
+              <option value="<!--{$d.id}-->"  <!--{if $gid==$d.id}--> selected<!--{/if}-->>
+              <!--{$d.gname}-->
+              </option>
+              <!--{/foreach}-->
+              </select></td>
+            <td class="main_bleft">&nbsp;</td>
+            <td colspan="3" class="main_bright" align="left">&nbsp;</td>
+          </tr>
+          
+   
+        </table>
+        </form>
+        
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+
+       
+
+ <div id="allprice">1</div>
+ 
+ 
+<script language="javascript">
+
+
+var url = "?adm=games&opt=gold";
+	function getprice(id){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=getprice&id="+id,
+			success: function(msg){     $("#allprice").html(msg);    }
+		});
+	}
+
+
+
+   function doshow(id){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=ads&opt=showimg&id="+id+"&t="+ad_type+"&ad_no="+ad_no+"&ad_id="+ad_id,
+			success: function(msg){    if( msg == 1 ) location.href=url;     }
+		});
+
+  }
+
+  function doadd(){
+	  
+	  var gid = document.pdata.gid.value;   
+	  var sid = document.pdata.sid.value;  
+	  if(gid ==0 || sid == 0){
+		  alert("请选择游戏!");return false;
+	  }
+      var pname = document.pdata.pname.value; 
+	  var price = document.pdata.price.value;   
+      var num = document.pdata.num.value;  
+		
+		//alert(price);return false;
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=gold&act=add&gid="+gid+"&sid="+sid+"&pname="+pname+"&price="+price+"&num="+num,
+			success: function(msg){   if( msg == 1 ) location.href=url;     }
+		});
+
+  }
+  
+  function delgold(id){
+	  if(confirm("确认刪除!!!") == true){
+		  $.ajax({
+				type: "GET",
+				url: "admin.php",
+				data: "adm=games&opt=gold&act=del&id="+id,
+				success: function(msg){   if( msg == 1 ) $("#tr_"+id).hide();     }
+			});
+	  }
+  }
+  
+
+ 
+	var oldText, newText, editid, editact;
+	$('.editable').hover(function() {
+		$(this).addClass('edithover');
+	}, function() {
+		$(this).removeClass('edithover');
+	}).bind('dblclick', function() {
+		var strA = $(this).attr("id").split("_");
+		editid = strA[0];
+		editfield = strA[1];
+		oldText = trim($(this).html().replace(/"/g, "&quot;"));
+		$(this).html('<input type="text" class="editInput" onblur="dosave(this)" value="' + oldText +'" />');
+		$(".editInput").select();
+		$(this).select();
+	});	
+ 
+	
+	
+  function dosave(obj){  
+	  newText = obj.value.replace(/"/g, "&quot;");
+	  
+	  $.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=gold&act=ajax&id="+editid+"&val="+escape(newText)+"&editfield="+editfield,
+			success: function(msg){   if( msg == 1 )  return true;   }
+		});
+		$(obj).parent('span').html(newText);
+
+  }
+  
+  function gobak (obj){
+	  $(obj).parent('span').html(oldText);
+  }
+  
+ function trim(text) {   
+    return (text || "").replace(/^\s+|\s+$/g, "");   
+} 
+  
+  </script>
+        <!--{include file='footer'}-->

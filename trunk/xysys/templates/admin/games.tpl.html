@@ -1,0 +1,122 @@
+<!--{include file='header'}-->
+<!--{if $act == 'add' or $act=='edit'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    Add
+    <!--{else}-->
+    Edit
+    <!--{/if}-->
+    Category</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+</div>
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<form action="<!--{$admin_file}-->?adm=games&opt=mygame_do" method="post" name="FORM" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td class="main_bleft">Category Name:</td>
+        <td class="main_bright"><input class="input" name="gname"   value="<!--{$doc.gname}-->" size="70">
+          &nbsp;</td>
+      </tr>
+
+      <tr>
+        <td class="main_bleft">Summary:</td>
+        <td class="main_bright"><textarea name="summary" rows="5" cols="160"  ><!--{$doc.summary}-->
+</textarea>多个用半角逗号分割</td>
+      </tr>
+      <script language="javascript">
+            /*var oFCKeditor = new FCKeditor( 'summary' ) ;
+            oFCKeditor.Height = 230;
+            oFCKeditor.ToolbarSet	= 'Jiu' ;
+            oFCKeditor.ReplaceTextarea() ;*/
+        </script>
+<tr>
+        <td class="main_bleft">Category:</td>
+        <td class="main_bright">
+        <select name="istop">
+        <option value="0">ROOT</option>
+            <!--{foreach from=$games item=d}-->
+            <option value="<!--{$d.id}-->" <!--{if $doc.istop==$d.id}-->selected<!--{/if}-->>
+            <!--{$d.gname}-->
+            </option>
+            <!--{/foreach}-->
+          </select></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">Place:</td>
+        <td class="main_bright" ><input class="input" name="place"  value="<!--{$doc.place}-->" size="6">
+          </td>
+      </tr> 
+      <tr>
+        <td class="main_bleft">Images:</td>
+        <td class="main_bright" ><input type="file" name="upfile[]" size="40" /></td>
+      </tr>
+    <td colspan="2"class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+        <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+        <input type="submit" name="Submit" value="Save" class="btn"/>
+        <input type="reset" name="Submit2" value="Reset" class="btn" /></td>
+    </tr>
+    </tbody>
+    
+  </table>
+</form>
+<!--{else}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">分类列表</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=games&opt=mygame&act=add" >添加</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+        <tr>
+          <td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr bgcolor="#FFFFFF">
+                <td height="4"></td>
+              </tr>
+            </table>
+            <form action="<!--{$admin_file}-->?adm=article&opt=cate" method="post" name="form1">
+              <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+                <tr class="tr2">
+                  <td  width="10%"><strong>编号</strong></td>
+                 
+                  <td width="60%"><strong>&nbsp;栏目名称</strong></td>
+
+                   <td width="10%"><strong>顺序</strong></td>
+                  <td  ><strong>操作</strong></td>
+                </tr>
+                <!--{foreach from=$docs item=d}-->
+                <tr class="listtr" style="font-weight:bold;" >
+                  <td align="left"><!--{$d.id}--></td>
+                  
+                  <td   align="left">&nbsp;<!--{$d.gname}--> </td>
+                 
+                  <td align="left"><!--{$d.place}--></td>
+                  <td valign="middle"><a href="<!--{$admin_file}-->?adm=games&opt=mygame&act=edit&id=<!--{$d.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=games&opt=mygame&act=del&id=<!--{$d.id}-->" onclick="javascript:return   confirm('<!--{$lang.conf_del}-->');"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a></td>
+                </tr>
+                
+                <!--{foreach from=$d.sub item=s}-->
+                <tr class="listtr" >
+                  <td align="left"><div style="padding-left:20px;"><!--{$s.id}--></div></td>
+                 
+                  <td   align="left"><div style="padding-left:20px;"><!--{$s.gname}--></div> </td>
+                 
+                  <td ><!--{$s.place}--></td>
+                  <td valign="middle"><a href="<!--{$admin_file}-->?adm=games&opt=mygame&act=edit&id=<!--{$s.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=games&opt=mygame&act=del&id=<!--{$s.id}-->" onclick="javascript:return   confirm('<!--{$lang.conf_del}-->');"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a>
+                  
+                  <a href="<!--{$admin_file}-->?adm=tbapi&opt=items&cid=<!--{$s.tb_cid}-->" target="_blank" >商品列表</a>
+                  </td>
+                </tr>
+                <!--{/foreach}-->
+                
+                <!--{/foreach}-->
+              </table>
+          </form></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{/if}-->
+<!--{include file='footer'}-->

@@ -1,0 +1,132 @@
+<!--{include file='header'}-->
+<!--{if $act == 'add' or $act=='edit' or $act =='send'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    添加
+    <!--{elseif $act=='edit'}-->
+    编辑
+    <!--{else}-->
+     发送
+    <!--{/if}-->
+    邮件列表</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">返回</a></div>
+</div>
+<!--{if $act == 'send'}-->
+<form action="<!--{$admin_file}-->?adm=email&opt=sendmail" method="post" name="FORM" >
+<table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+  <tbody>
+    <tr>
+      <td class="main_bleft">主题:</td>
+      <td class="main_bright"><!--{$doc.title}-->
+        &nbsp;</td>
+    </tr>
+    <tr>
+      <td class="main_bleft">内容:</td>
+      <td class="main_bright"><!--{$doc.message}--></td>
+    </tr>
+    <tr>
+      <td class="main_bleft">发送方式:</td>
+      <td class="main_bright"><input type="radio" name="sendtype" value="sendmail" checked="checked" />Sendmail <input type="radio" name="sendtype" value="smtp" />SMTP</td>
+    </tr>
+    <tr>
+      <td class="main_bleft">邮件地址:</td>
+      <td class="main_bright">
+      <input type="checkbox" name="membersd" value="1" />注册用户 <br>
+      
+      <textarea name="text" cols="60" rows="20"  ></textarea><br />
+      一行一个地址
+      
+      </td>
+    </tr>
+    <tr>
+    
+  <td colspan="2"class="main_btn">
+      <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+      <input type="submit" name="Submit" value="发送" class="btn"/>
+      </td>
+  </tr>
+  </tbody>
+  
+</table>
+  </form>
+<!--{else}-->
+
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<form action="<!--{$admin_file}-->?adm=email&opt=message_do" method="post" name="FORM" >
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td class="main_bleft">主题:</td>
+        <td class="main_bright"><input class="input" name="title"   value="<!--{$doc.title}-->" size="70">
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td class="main_bleft">内容</td>
+        <td class="main_bright"><textarea name="summary"  ><!--{$doc.message}-->
+</textarea></td>
+      </tr>
+      <script language="javascript">
+            var oFCKeditor = new FCKeditor( 'summary' ) ;
+            oFCKeditor.Height = 430;
+            oFCKeditor.ToolbarSet	= 'Summary' ;
+            oFCKeditor.ReplaceTextarea() ;
+        </script>
+      <tr>
+      
+    <td colspan="2"class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+        <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+        <input type="submit" name="Submit" value="提交" class="btn"/>
+        <input type="reset" name="Submit2" value="重置" class="btn" /></td>
+    </tr>
+    </tbody>
+    
+  </table>
+</form>
+<!--{/if}-->
+<!--{else}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">邮件内容列表</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=email&opt=message&act=add" >添加</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+        <tr>
+          <td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr bgcolor="#FFFFFF">
+                <td height="4"></td>
+              </tr>
+            </table>
+            <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+              <tr class="tr2">
+                <td width="5%">编号</td>
+                <td align="left">&nbsp;主题</td>
+                <td>添加日期</td>
+                <td>管理</td>
+              </tr>
+              <!--{foreach from=$docs item=d}-->
+              <tr class="listtr">
+                <td><!--{$d.id}--></td>
+                <td align="left">&nbsp;<!--{$d.title}-->
+                  &nbsp;</td>
+                <td><!--{$d.dateline|date_format:"%Y-%m-%d %H:%M:%S"}--></td>
+                <td>
+                <a href="<!--{$admin_file}-->?adm=email&opt=message&act=send&id=<!--{$d.id}-->" ><img src="images/gmail.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> 
+                <a href="<!--{$admin_file}-->?adm=email&opt=message&act=edit&id=<!--{$d.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=email&opt=message&act=del&id=<!--{$d.id}-->" onclick="javascript:return   confirm('<!--{$lang.conf_del}-->');"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a>
+                
+                </td>
+              </tr>
+              <!--{/foreach}-->
+            </table>
+            <div class="pages">
+              <!--{$pages}-->
+            </div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{/if}-->
+<!--{include file='footer'}-->

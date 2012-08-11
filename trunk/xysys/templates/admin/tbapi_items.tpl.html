@@ -1,0 +1,95 @@
+<!--{include file='header'}-->
+
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">商品列表</div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+       
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+
+        <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="background:#E2F5BC;">
+          <tr class="tr2">
+            <td width="15%">No.</td> 
+            <td>图片 </td>
+            <td>名称 </td>
+            <td>价格 </td>
+            <td>商品推广链接 </td>
+            <td>佣金</td>
+            <td>佣金比率</td>
+            <td>总成交量 </td>
+            <td>总支出佣金</td>
+            <td>卖家信用</td>
+            <td>所在地</td>
+            <td>店铺推广链接</td>
+            <td>卖家昵称</td>
+            <td>推荐商品</td>
+            <td>用户评价</td>
+          </tr>
+          <!--{foreach from=$docs item=val}-->
+          <tr class="listtr" id="tr_<!--{$val->num_iid}-->" >
+            <td><input type="checkbox" name="items[]" value="<!--{$val->num_iid}-->" /><!--{$val->num_iid}--></td>
+            <td><img src="<!--{$val->pic_url}-->" width="60" ></td>
+            <td><a href="<!--{$admin_file}-->?adm=tbapi&opt=itemdetail&item_id=<!--{$val->num_iid}-->" target="_blank"><!--{$val->title}--> </a></td>
+            <td><!--{$val->price}--> </td>
+            <td><a href="<!--{$val->click_url}-->" target="_blank">淘宝购买</a> </td>
+            <td><!--{$val->commission}--></td>
+            <td><!--{$val->commission_rate/100}--></td>
+            <td><!--{$val->commission_num}--> </td>
+            <td><!--{$val->commission_volume}--></td>
+            <td><img src="img/level_<!--{$val->seller_credit_score}-->.gif" /></td>
+            <td><!--{$val->item_location}--></td>
+            <td><a href="<!--{$val->shop_click_url}-->" target="_blank">看店铺</a></td>
+            <td><!--{$val->nick}--></td>
+            <td><a href="<!--{$admin_file}-->?adm=tbapi&opt=itemrelate&item_id=<!--{$val->num_iid}-->" target="_blank">更多商品</a></td>
+            <td><a href="<!--{$admin_file}-->?adm=tbapi&opt=itemrate&item_id=<!--{$val->num_iid}-->" target="_blank">用户评价</a></td>
+          </tr>
+          <!--{/foreach}-->
+        </table>
+        
+        <div><input id="allchecked" type="checkbox" onclick="checkAll()">全选   <input type="button" value="导入" onclick="itemimport()"></div>
+   </form>     
+<script language="JavaScript" type="text/javascript">
+
+var sid = "<!--{$item_sid}-->";
+var gid = "<!--{$item_gid}-->";
+ 	function checkAll(){   
+       $("input[name='items[]']").attr("checked",true);   
+    } 
+	
+	function itemimport(){
+		var str = "";
+		$("input[name='items[]'][checked]").each(function(){ str += ","+$(this).val();});
+		
+		//alert("adm=tbapi&opt=itemimport&sid="+ sid +"&gid="+ gid +"&str="+str);
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=tbapi&opt=itemimport&sid="+ sid +"&gid="+ gid +"&str="+str,
+			success: function(msg){    if( msg == 1 ) alert("导入成功!");    }
+		});
+
+
+	}
+</script>
+
+          <!--{$pages}-->
+ 
+
+  
+<!--{include file='footer'}-->

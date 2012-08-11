@@ -1,0 +1,138 @@
+*{
+	padding:0px;
+	margin:0px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+body {
+	margin: 0px;
+	background:#F7F7F7;
+	font-size:12px;
+}
+input{
+	vertical-align:middle;
+}
+img{
+	border:none;
+	vertical-align:middle;
+}
+a{
+	color:#333333;
+}
+a:hover{
+	color:#FF3300;
+	text-decoration:none;
+}
+.main{
+	width:640px;
+	margin:40px auto 0px;
+	border:4px solid #EEE;
+	background:#FFF;
+	padding-bottom:10px;
+}
+
+.main .title{
+	width:600px;
+	height:50px;
+	margin:0px auto;
+	background:url(images/login_toptitle.jpg) -10px 0px no-repeat;
+	text-indent:326px;
+	line-height:46px;
+	font-size:14px;
+	letter-spacing:2px;
+	color:#F60;
+	font-weight:bold;
+}
+
+.main .login{
+	width:560px;
+	margin:20px auto 0px;
+	overflow:hidden;
+}
+.main .login .inputbox{
+	width:260px;
+	float:left;
+	background:url(images/login_input_hr.gif) right center no-repeat;
+}
+.main .login .inputbox dl{
+	width:230px;
+	height:41px;
+	clear:both;
+}
+.main .login .inputbox dl dt{
+	float:left;
+	width:60px;
+	height:31px;
+	line-height:31px;
+	text-align:right;
+	font-weight:bold;
+}
+.main .login .inputbox dl dd{
+	width:160px;
+	float:right;
+	padding-top:1px;
+}
+.main .login .inputbox dl dd input{
+	font-size:12px;
+	font-weight:bold;
+	border:1px solid #888;
+	padding:4px;
+	background:url(images/login_input_bg.gif) left top no-repeat;
+}
+
+
+.main .login .butbox{
+	float:left;
+	width:200px;
+	margin-left:26px;
+}
+.main .login .butbox dl{
+	width:260px;
+}
+.main .login .butbox dl dt{
+	width:220px;
+	height:41px;
+	padding-top:5px;
+}
+.main .login .butbox dl dt input{
+	width:98px;
+	height:33px;
+	background:url(../images/login_submit.gif) no-repeat;
+	border:none;
+	cursor:pointer;
+}
+.main .login .butbox dl dd{
+	height:21px;
+	line-height:21px;
+}
+.main .login .butbox dl dd a{
+	margin:5px;
+}
+
+
+
+.main .msg{
+	width:560px;
+	margin:10px auto;
+	clear:both;
+	line-height:17px;
+	padding:6px;
+	border:1px solid #FC9;
+	background:#FFFFCC;
+	color:#666;
+}
+
+.copyright{
+	width:640px;
+	text-align:right;
+	margin:10px auto;
+	font-size:10px;
+	color:#999999;
+}
+.copyright a{
+	font-weight:bold;
+	color:#F63;
+	text-decoration:none;
+}
+.copyright a:hover{
+	color:#000;
+}

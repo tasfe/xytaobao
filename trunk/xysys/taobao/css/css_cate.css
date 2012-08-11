@@ -1,0 +1,22 @@
+/* CSS Document */
+/*分类级别线样式*/
+
+.level_L   {background:url(../images/bg_category.gif) -36px -48px no-repeat; padding-left:30px; text-align:left; float:left;height:22px;}
+.level_I_I {background:url(../images/bg_category.gif) -5px -79px no-repeat; width:61px;text-align:left; float:left;height:22px;}
+
+.level_T   {background:url(../images/bg_category.gif) -36px 0px no-repeat; padding-left:30px;text-align:left;height:22px;}
+.level_I_L {background:url(../images/bg_category.gif) -5px -50px no-repeat; padding-left:60px;text-align:left;height:22px;}
+
+.level_I_T {background:url(../images/bg_category.gif) -5px 0px no-repeat; padding-left:60px; text-align:left;height:22px; }
+
+/* 分页 */
+
+.p_pages{ clear:both; text-align:left; }
+.p_pages .p_input{ margin-left:5px; width:20px; vertical-align:middle; height:12px; }
+
+/* 列表选中样式 */
+.listchecked   { background-color:#FFFFF7;}
+.listunchecked { background-color:#FFF;}
+/*列表鼠标经过样式*/
+.listover   { background-color:#F7FEFF;}
+.listout { background-color:#FFF;}
