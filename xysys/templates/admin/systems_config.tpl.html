@@ -1,0 +1,113 @@
+<!--{include file='header'}-->
+
+<!--{if $act == 'add' }-->
+<form action="<!--{$admin_file}-->?adm=systems&opt=setup&act=add" method="post">
+    <div class="bodytitle">
+        <div class="bodytitleleft"></div>
+        <div class="bodytitletxt"><span class="nav">System Config</span></div>
+        <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">返回</a></div>
+    </div>
+
+   <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td bgcolor="#f9ffe6" align="right" width="22%" class="main_bleft">Name:</td>
+        <td width="78%" bgcolor="#ffffff" class="main_bright"><input type="text" value="" size="60" name="skey">
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td bgcolor="#f9ffe6" align="right"  class="main_bleft">Value:</td>
+        <td bgcolor="#ffffff" class="main_bright">
+        <!--{if $doc.type=='text'}-->
+        <textarea name="sval" rows="10" cols="100"><!--{$doc.sval}--></textarea>
+        <!--{elseif $doc.type=='radio'}-->
+        <!--{html_radios name="sval" options=$cust_radios selected=$doc.sval separator="&nbsp;"}-->
+        <!--{else}-->
+        <input type="text" value="<!--{$doc.sval}-->" size="60" name="sval">
+        <!--{/if}-->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" bgcolor="#f9ffe6" class="main_bleft">
+  <input type="submit" name="Submit" value=" save " class="btn"></td>
+      </tr>
+    </tbody>
+   </table>
+</form>
+<!--{elseif  $act == 'edit'}-->
+<form action="<!--{$admin_file}-->?adm=systems&opt=setup" method="post">
+    <div class="bodytitle">
+        <div class="bodytitleleft"></div>
+        <div class="bodytitletxt"><span class="nav">System Config</span></div>
+        <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">返回</a></div>
+    </div>
+
+   <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td bgcolor="#f9ffe6" align="right" width="22%" class="main_bleft">Name:</td>
+        <td width="78%" bgcolor="#ffffff" class="main_bright"><!--{$doc.skey}-->
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td bgcolor="#f9ffe6" align="right"  class="main_bleft">Value:</td>
+        <td bgcolor="#ffffff" class="main_bright">
+        <!--{if $doc.type=='text'}-->
+        <textarea name="sval" rows="10" cols="100"><!--{$doc.sval}--></textarea>
+        <!--{elseif $doc.type=='radio'}-->
+        <!--{html_radios name="sval" options=$cust_radios selected=$doc.sval separator="&nbsp;"}-->
+        <!--{else}-->
+        <input type="text" value="<!--{$doc.sval}-->" size="60" name="sval">
+        <!--{/if}-->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" bgcolor="#f9ffe6" class="main_bleft"><input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+  <input type="submit" name="Submit" value=" save " class="btn"></td>
+      </tr>
+    </tbody>
+   </table>
+</form>
+<!--{else}-->
+
+<div class="bodytitle">
+	<div class="bodytitleleft"></div>
+	<div class="bodytitletxt">System Config</div>
+    <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=systems&opt=setup&act=add" >添加</a></div>
+</div>
+
+
+
+
+  <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+          <tr>
+            <td align='center' valign='top'>
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr bgcolor="#FFFFFF">
+                  <td height="4"></td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+                <tr align="center" bgcolor="#F8FBFB" height="22">
+                  <td width="16%" bgcolor="#E2F5BC"><strong>Name</strong></td>
+                  <td bgcolor="#E2F5BC"><strong>Value</strong></td>
+                  <td width="10%" bgcolor="#E2F5BC"><strong>manager</strong></td>
+                </tr>
+                <!--{foreach from=$docs item=d}-->
+                <tr class="listtr" >
+                  <td valign="middle"><!--{$d.skey}--></td>
+                  <td align="left" valign="middle" style="padding-left:10px;"><!--{if $d.type=='radio'}--><!--{$lang.bool[$d.sval]}--><!--{else}--><!--{$d.sval}--><!--{/if}--></td>
+                  <td valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<!--{$admin_file}-->?adm=systems&opt=setup&act=edit&id=<!--{$d.id}-->"><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></td>
+                </tr>
+                <!--{/foreach}-->
+              </table>
+             </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+<!--{/if}-->
+
+<!--{include file='footer'}-->

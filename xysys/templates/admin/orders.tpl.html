@@ -1,0 +1,81 @@
+<!--{include file='header'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">订单列表</div>
+</div>
+
+
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td style="text-align:left">
+	<form method="get">
+
+      会员账号:&nbsp;&nbsp;
+      <input name="keyword" type="text" class="input" id="keyword" size="10" />&nbsp;
+      &nbsp;
+      <input type="button" name="Submit2" value="查找" onclick="dos()" class="btn" /> &nbsp;&nbsp;支持模糊搜索
+	  </form>
+	  </td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+  <tr class="tr2">
+    <td width="5%">&nbsp;</td>
+    <td>订单号</td>
+	<td>产品类型</td>
+	<td>用户账号</td>
+	<td>提交时间</td>
+    <td>状态</td>
+    <td>金额</td>
+    <td>状态</td>
+    <td>管理</td>
+  </tr>
+  
+
+      <!--{foreach from=$docs item=d}-->
+     <tr class="listtr">
+     <td><input name="did[]" type="checkbox" id="del[]" value="<!--{$d.orders_id}-->" /></td>
+        <td><a href="<!--{$admin_file}-->?adm=orders&opt=detail&oid=<!--{$d.orders_id}-->" target="_blank"><!--{$d.orders_id}--></a>&nbsp;</td>
+        <td><!--{$d.order_type}-->&nbsp;</td>
+        <td><!--{$d.truename}--> &nbsp;</td>
+        <td> <!--{$d.date_purchased}--></td>
+      <td><!--{if $d.payment_method==1}-->支票/現金支票<!--{else}-->信用卡<!--{/if}--></td>
+      <td ><!--{$d.currency_value|money:$d.currency}--></td>
+      <td><!--{if $d.status==0}-->未付款，未確認
+<!--{elseif $d.status==1}--><img src="images/start.gif" align="absmiddle" alt="已付款，已確認" />
+<!--{elseif $d.status==2}--><img src="images/del.gif" align="absmiddle" alt="已刪除" />
+<!--{elseif $d.status==4}--><img src="images/cancel.gif" align="absmiddle" alt="已取消" />
+<!--{/if}-->&nbsp;</td>
+        <td>
+<!--{if $d.status==1}-->
+<a href="../detail.php?id=<!--{$d.ad_id}-->" target="_blank" ><img src="images/view.gif" align="absmiddle" alt="查看" /></a>
+<!--{/if}-->
+        <!--{if $d.status == 0}-->
+ 
+
+        <a href="<!--{$admin_file}-->?adm=orders&opt=del&oid=<!--{$d.id}-->" onclick="javascript:return   confirm('確認刪除!!!');"><img src="images/del.gif" align="absmiddle" alt="刪除" /></a>
+        <!--{/if}-->&nbsp;
+        </td>
+         </tr>
+      <!--{/foreach}-->
+
+    </table>
+
+ <!--{$pages}-->
+
+
+<!--{include file='footer'}-->

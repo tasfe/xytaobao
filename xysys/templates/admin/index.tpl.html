@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Login</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css>BODY {
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TH {
+	FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+BODY {
+	MARGIN: 0px; BACKGROUND-COLOR: #ffffff
+}
+.table_border1 {
+	BORDER-RIGHT: #999999 1pt solid; BORDER-TOP: #999999 1pt solid; BORDER-LEFT: #999999 1pt solid; BORDER-BOTTOM: #999999 1pt solid
+}
+.login {
+	WIDTH: 50px
+}
+.STYLE1 {
+	
+}
+</STYLE>
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript">
+function loginCheck(form)
+{
+	var username = form.username;
+	var password = form.password;
+	if(username.value == ''){alert("<!--{$lang.login_user1}-->");username.focus();return false;}
+	if(password.value == ''){alert("<!--{$lang.login_pswd1}-->");password.focus();return false;}
+	return true;
+}
+</script>
+
+</head>
+<body onload="javascript:document.myform.username.focus();">
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD background=images/administration1.gif><IMG height=44 
+      src="images/administration2.gif" width=336></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e7e7e7 border=0>
+  <TBODY>
+  <TR>
+    <TD height=350>
+      <form name="myform" method="post" action="index.php?act=login" onsubmit="return loginCheck(this);">
+      <TABLE cellSpacing=0 cellPadding=0 width=339 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle>
+            <TABLE class=table_border1 cellSpacing=1 cellPadding=0 width="100%" 
+            bgColor=#f3f3f3 border=0>
+              <TBODY>
+              <TR>
+                <TD class=STYLE1 align=right>&nbsp;</TD>
+                <TD class=STYLE1></TD>
+                <TD width="214" colSpan=2 align=left class=STYLE1>&nbsp;</TD></TR>
+              <TR>
+                <TD class=STYLE1 align=right width=115>Username:</TD>
+                <TD class=STYLE1 width=10></TD>
+                <TD class=STYLE1 align=left colSpan=2><INPUT id=username 
+                  onblur="this.style.backgroundColor='#fff'" 
+                  style="WIDTH: 120px" 
+                  onfocus="this.style.backgroundColor='#ffff9f'" 
+                name=username></TD></TR>
+              <TR>
+                <TD class=STYLE1 height=8></TD>
+                <TD class=STYLE1></TD>
+                <TD class=STYLE1 colSpan=2></TD></TR>
+              <TR>
+                <TD class=STYLE1 align=right>Password:</TD>
+                <TD class=STYLE1></TD>
+                <TD class=STYLE1 align=left colSpan=2><INPUT id=password 
+                  onblur="this.style.backgroundColor='#fff'" 
+                  style="WIDTH: 120px" 
+                  onfocus="this.style.backgroundColor='#ffff9f'" type=password 
+                  name=password></TD></TR>
+              <TR>
+                <TD class=STYLE1 height=8></TD>
+                <TD class=STYLE1></TD>
+                <TD class=STYLE1 colSpan=2></TD></TR>
+              
+              <TR>
+                <TD class=STYLE1 height=8></TD>
+                <TD class=STYLE1></TD>
+                <TD class=STYLE1 align=left colSpan=2></TD></TR>
+              <TR>
+                <TD class=STYLE1 align=right>&nbsp;</TD>
+                <TD class=STYLE1></TD>
+                <TD class=STYLE1 align=left colSpan=2><INPUT type=submit value=" Sign In" name=Submit></TD>
+              </TR>
+              </TBODY></TABLE></TD></TR></TBODY></TABLE>
+      <div align="center"><br>
+      </div>
+      </FORM></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e7e7e7>&nbsp;</TD></TR>
+  <TR>
+    <TD>
+      <DIV align=center><IMG src="images/copyright.jpg" 
+      width=375 height=82 border="0" usemap="#Map"></DIV></TD></TR></TBODY></TABLE>
+<map name="Map">
+<area shape="rect" coords="91,63,294,80" href="mailto:support@goldensection101.com">
+</map>
+
+</body>
+</html>

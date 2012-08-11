@@ -1,0 +1,196 @@
+<!--{include file='header'}-->
+
+<!--{if $act == 'add' or $act=='edit'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    添加
+    <!--{else}-->
+    编辑
+    <!--{/if}-->
+    代练</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">返回</a></div>
+</div>
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<form action="<!--{$admin_file}-->?adm=games&opt=leveling_do" method="post" name="FORM" enctype="multipart/form-data">
+<table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+<tr>
+  <td width="10%" class="main_bleft">游戏:</td>
+  <td width="27%" align="left" class="main_bright"><select name="gid" onchange="getservice(this.value,0)">
+      <option value="0">请选择</option>
+      <!--{foreach from=$games item=d}-->
+      <option value="<!--{$d.id}-->"  <!--{if $doc.gid==$d.id}--> selected<!--{/if}-->>
+      <!--{$d.gname}-->
+      </option>
+      <!--{/foreach}-->
+    </select></td>
+  <td width="13%" class="main_bleft">服务器:</td>
+  <td width="50%" align="left" class="main_bright">
+  <div id="allservice">
+    <select name="sid" >
+      <option value="0">请选择</option>
+    </select></div></td>
+</tr>
+
+
+
+<tr>
+  <td class="main_bleft">产品名称:</td>
+  <td class="main_bright" align="left"><input  type="text" name="lname" size="50" value="<!--{$doc.lname}-->"></td>
+  <td class="main_bleft">价格:</td>
+  <td align="left" class="main_bright">
+    <input  type="text" name="price" size="8" value="<!--{$doc.price}-->"></td>
+  </tr>
+  
+  
+   <tr>
+     <td class="main_bleft">时间:</td>
+     <td class="main_bright" colspan="3"><input  type="text" name="days" size="8" value="<!--{$doc.days}-->">天</td>
+   </tr>
+   <tr>
+        <td class="main_bleft">介绍</td>
+        <td class="main_bright" colspan="3"><textarea name="summary"  ><!--{$doc.summary}-->
+</textarea></td>
+      </tr>
+      <script language="javascript">
+            var oFCKeditor = new FCKeditor( 'summary' ) ;
+            oFCKeditor.Height = 230;
+            oFCKeditor.ToolbarSet	= 'Summary' ;
+            oFCKeditor.ReplaceTextarea() ;
+        </script>
+      
+      
+<tr>
+  <td colspan="4" class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+        <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+        <input type="submit" name="Submit" value="提交" class="btn"/>
+        <input type="reset" name="Submit2" value="重置" class="btn" /></td>
+</tr>
+
+</table>
+</form>
+        
+<!--{else}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">代练产品列表</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=games&opt=leveling&act=add" >添加</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+        
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+
+        <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="background:#E2F5BC;">
+          <tr class="tr2">
+            <td width="15%">编号</td>
+            <td>产品名称 </td>
+            <td>价格 </td>
+            <td>时间（天） </td>
+            <td>游戏名称 </td>
+            <td>服务器名称</td>
+            <td>操作</td>
+          </tr>
+          <!--{foreach from=$docs item=d}-->
+          <tr class="listtr" id="tr_<!--{$d.id}-->" >
+            <td><!--{$d.id}--></td>
+            <td  align="left"><!--{$d.lname}-->
+              &nbsp;</td>
+            <td ><!--{$d.price}-->
+              &nbsp;</td>
+              <td ><!--{$d.days}-->
+              &nbsp;</td>
+            <td><!--{$d.gname}-->
+              &nbsp;</td>
+            <td><!--{$d.sname}-->
+              &nbsp;</td>
+            <td><a href="<!--{$admin_file}-->?adm=games&opt=leveling&act=edit&id=<!--{$d.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="javascript:void(0)" onclick="delgold(<!--{$d.id}-->)"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a> &nbsp; </td>
+          </tr>
+          <!--{/foreach}-->
+        </table>
+     
+          <!--{$pages}-->
+ 
+
+<!--{/if}-->
+
+<script language="javascript">
+
+var url = "?adm=games&opt=gold";
+	function getservice(id,sid){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=getservices&id="+id+"&sid="+sid,
+			success: function(msg){     $("#allservice").html(msg);    }
+		});
+	}
+
+  function dodel(id){
+	if(confirm('<!--{$lang.conf_del}-->')){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=gold&id="+id,
+			success: function(msg){   if( msg == 1 ) { $("#d"+id).hide();alert("<!--{$lang.success_del}-->"); }   }
+		});
+	}
+  }
+
+   function doshow(id){
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=ads&opt=showimg&id="+id+"&t="+ad_type+"&ad_no="+ad_no+"&ad_id="+ad_id,
+			success: function(msg){    if( msg == 1 ) location.href=url;     }
+		});
+
+  }
+
+  function doadd(){
+	  
+	  var gid = document.pdata.gid.value;   
+	  var sid = document.pdata.sid.value;  
+	  if(gid ==0 || sid == 0){
+		  alert("请选择游戏!");return false;
+	  }
+      var pname = document.pdata.pname.value; 
+	  var price = document.pdata.price.value;   
+
+		
+		//alert(price);return false;
+		$.ajax({
+			type: "GET",
+			url: "admin.php",
+			data: "adm=games&opt=leveling&act=add&gid="+gid+"&sid="+sid+"&pname="+pname+"&price="+price,
+			success: function(msg){   if( msg == 1 ) location.href=url;     }
+		});
+
+  }
+  
+  function delgold(id){
+	  alert(id);
+  }
+  
+
+<!--{if $doc.gid}--> 
+getservice(<!--{$doc.gid}-->,<!--{$doc.sid}-->);
+<!--{/if}-->
+  </script>
+  
+<!--{include file='footer'}-->

@@ -1,0 +1,36 @@
+/* CSS Document */
+.anylinkcss{
+position:absolute;
+visibility: hidden;
+border:1px solid #FFF;
+border-bottom-width: 0;
+font:normal 12px Verdana;
+color:white;
+line-height: 22px;
+margin-top:0px;
+margin-left:0px;
+background-color:#1e3f81;
+width: 120px;
+font-size:13px;
+FILTER: alpha(opacity=85);
+}
+
+.anylinkcss a{
+width: 100%;
+display: block;
+text-indent: 6px;
+border-bottom: 1px solid  #FFF;
+padding: 1px 0;
+color:white;
+text-decoration: none;
+font-weight: bold;
+text-indent: 5px;
+padding-left:3px;
+}
+
+.anylinkcss a:hover{ /*hover background color*/
+color:#F60;
+}
+.anylinkcss a:visited{ /*hover background color*/
+color: #FFF;
+}

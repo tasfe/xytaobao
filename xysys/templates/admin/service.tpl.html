@@ -1,0 +1,118 @@
+<!--{include file='header'}-->
+<!--{if $act == 'add' or $act=='edit'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    Add
+    <!--{else}-->
+    Edit
+    <!--{/if}-->
+    Sub-category</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">back</a></div>
+</div>
+<form action="<!--{$admin_file}-->?adm=games&opt=service_do" method="post" name="FORM" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td class="main_bleft">Name:</td>
+        <td class="main_bright"><input class="input" name="sname"   value="<!--{$doc.sname}-->" size="70">
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td class="main_bleft">Root:</td>
+        <td class="main_bright"><select name="gid">
+            <!--{foreach from=$games item=d}-->
+            <option value="<!--{$d.id}-->" <!--{if $doc.gid==$d.id}-->selected<!--{/if}-->>
+            <!--{$d.gname}-->
+            </option>
+            <!--{/foreach}-->
+          </select></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">Place</td>
+        <td class="main_bright" ><input class="input" name="place" value="<!--{$doc.place}-->" size="4"></td>
+      </tr>
+    <td colspan="2"class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+        <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+        <input type="submit" name="Submit" value="Save" class="btn"/>
+        <input type="reset" name="Submit2" value="Reset" class="btn" /></td>
+    </tr>
+    </tbody>
+    
+  </table>
+</form>
+<!--{else}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Sub-category List</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=games&opt=service&act=add" >Add</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+        <tr>
+          <td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr bgcolor="#FFFFFF">
+                <td height="4"></td>
+              </tr>
+            </table>
+            <div>
+              <form action="#" method="post">
+                By category:
+                <select name="gid" onchange="goserviceurl(this.value)">
+                  <option value="0">Please Choose ......</option>
+                  <!--{foreach from=$games item=d}-->
+                  <option value="<!--{$d.id}-->" 
+            
+                  <!--{if $gid==$d.id}-->
+                  
+            selected
+            
+                  <!--{/if}-->
+                  >
+                  <!--{$d.gname}-->
+                  </option>
+                  <!--{/foreach}-->
+                </select>
+              </form>
+            </div>
+            <form action="<!--{$admin_file}-->?adm=article&opt=cate" method="post" name="form1">
+              <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+                <tr class="tr2">
+                  <td width="15%">No.</td>
+                  <td>Name</td>
+                  <td>Parent Category </td>
+                  <td>Place </td>
+                  <td>Operate</td>
+                </tr>
+                <!--{foreach from=$docs item=d}-->
+                <tr class="listtr">
+                  <td><!--{$d.id}--></td>
+                  <td align="left"><!--{$d.sname}-->
+                    &nbsp;</td>
+                  <td ><!--{$d.gname}-->
+                    &nbsp;</td>
+                  <td ><!--{$d.place}-->
+                    &nbsp;</td>
+                  <td><a href="<!--{$admin_file}-->?adm=games&opt=service&act=edit&id=<!--{$d.id}-->" ><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=games&opt=service&act=del&id=<!--{$d.id}-->" onclick="javascript:return   confirm('<!--{$lang.conf_del}-->');"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a> &nbsp; </td>
+                </tr>
+                <!--{/foreach}-->
+              </table>
+            </form></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{$pages}-->
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function goserviceurl(id){
+		if(id >0)
+			window.location="<!--{$admin_file}-->?adm=games&opt=service&gid="+id;
+	}
+//-->
+</SCRIPT>
+<!--{/if}-->
+<!--{include file='footer'}-->

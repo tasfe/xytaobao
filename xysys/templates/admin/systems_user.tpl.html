@@ -1,0 +1,112 @@
+<!--{include file='header'}-->
+<!--{if !$act}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Administrators</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=systems&opt=user&act=add" >Add manager</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+        <tr>
+          <td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr bgcolor="#FFFFFF">
+                <td height="4"></td>
+              </tr>
+            </table>
+            <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="background:#E2F5BC;">
+              <tr class="tr2" >
+                <td>UID</td>
+                <td>Login User</td>
+                <td>E-mail</td>
+                <td>Last login</td>
+                <td>LoginIP</td>
+                <td>opt</td>
+              </tr>
+              <!--{foreach from=$docs item=d}-->
+              <tr class="listtr" >
+                <td><!--{$d.id}--></td>
+                <td><!--{$d.username}--></td>
+                <td><!--{$d.email}--></td>
+                <td>&nbsp;
+                  <!--{$d.logintime|date_format:"%Y-%m-%d %H:%M:%S"}--></td>
+                <td>&nbsp;
+                  <!--{$d.loginip}--></td>
+                <td><a href="<!--{$admin_file}-->?adm=systems&opt=user&act=edit&id=<!--{$d.id}-->"><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=systems&opt=user&act=del&id=<!--{$d.id}-->"><img src="images/del.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a></td>
+              </tr>
+              <!--{/foreach}-->
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{elseif $act == 'add'}-->
+<form action="<!--{$admin_file}-->?adm=systems&opt=user_do" method="post">
+  <div class="bodytitle">
+    <div class="bodytitleleft"></div>
+    <div class="bodytitletxt"><span class="nav">Add manager</span></div>
+    <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+  </div>
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr >
+        <td  class="main_bleft">Username</td>
+        <td  class="main_bright"><input name="new_username" type="text" id="new_username" class="input" /></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">Password</td>
+        <td class="main_bright"><input name="new_password" type="text" id="new_password" class="input" /></td>
+      </tr>
+      <tr >
+        <td class="main_bleft">Confirm password</td>
+        <td class="main_bright"><input name="new_password2" type="text" id="new_password2" class="input" /></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">E-mail</td>
+        <td class="main_bright"><input name="new_email" type="text" id="new_email" class="input" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="main_btn"><input name="step" type="hidden" id="step" value="1">
+          <input type="submit" name="Submit" value=" Save " class="btn">
+          <input type="reset" name="Submit2" value=" Reset " class="btn"></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<!--{elseif $act == 'edit'}-->
+<form action="<!--{$admin_file}-->?adm=systems&opt=user_do" method="post">
+  <div class="bodytitle">
+    <div class="bodytitleleft"></div>
+    <div class="bodytitletxt"><span class="nav">Edit manager</span></div>
+    <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+  </div>
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr >
+        <td  class="main_bleft">Username</td>
+        <td  class="main_bright"><input name="new_username" type="text" disabled="disabled" class="input" id="new_username" value="<!--{$doc.username}-->" /></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">password</td>
+        <td class="main_bright"><input name="new_password" type="text" id="new_password" class="input" />
+          (Please leave blank if you wish to keep your existing password.)</td>
+      </tr>
+      <tr >
+        <td class="main_bleft">Confirm password</td>
+        <td class="main_bright"><input name="new_password2" type="text" id="new_password2" class="input" /></td>
+      </tr>
+      <tr>
+        <td class="main_bleft">E-mail</td>
+        <td class="main_bright"><input name="new_email" type="text" class="input" id="new_email" value="<!--{$doc.email}-->" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="main_btn"><input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+          <input name="step" type="hidden" id="step" value="2">
+          <input type="submit" name="Submit" value=" save " class="btn"></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<!--{/if}-->
+<!--{include file='footer'}-->

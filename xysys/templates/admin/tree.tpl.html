@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>site menu</title>
+<link type="text/css" rel="stylesheet" href="css/css_menu.css"/>
+<link type="text/css" rel="stylesheet" href="css/base.css"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script language="javascript">
+function getObject(objectId) {
+ if(document.getElementById && document.getElementById(objectId)) {
+ // W3C DOM
+ return document.getElementById(objectId);
+ }
+ else if (document.all && document.all(objectId)) {
+ // MSIE 4 DOM
+ return document.all(objectId);
+ }
+ else if (document.layers && document.layers[objectId]) {
+ // NN 4 DOM.. note: this won't find nested layers
+ return document.layers[objectId];
+ }
+ else {
+ return false;
+ }
+}
+
+function showHide(objname){
+    var obj = getObject(objname);
+    if(obj.style.display == "none"){
+		obj.style.display = "block";
+	}else{
+		obj.style.display = "none";
+	}
+}
+</script>
+<base target="main"/>
+</head>
+<body>
+<div class="menu">
+  <!-- Item  Strat -->
+  <!--{foreach from=$trees key=k item=d}-->
+  <dl>
+    <dt><a target="_self" onClick='showHide("items<!--{$k}-->")' href="#">
+      <span style="color:#FFF;"><!--{$d.name}--></span>
+      </a></dt>
+    <dd style="display: block;" id="items<!--{$k}-->">
+      <ul>
+        <!--{foreach from=$d.sub item=s}-->
+        <li><a target="main" href="admin.php?adm=<!--{$d.adm}-->&opt=<!--{$s.opt}-->">
+          <!--{$s.name}-->
+          </a></li>
+        <!--{/foreach}-->
+      </ul>
+    </dd>
+  </dl>
+  <!--{/foreach}-->
+  <!-- Item  End -->
+
+</div>
+</body>
+</html>

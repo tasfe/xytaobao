@@ -1,0 +1,25 @@
+<!--{include file='header'}-->
+<!--{foreach from=$all_cates item=d}-->
+<!-- start  -->
+<div class="categoty_1"> <a href="" class="hot-key"><!--{$d.gname}--></a> 
+<!--{foreach from=$d.sub item=s}-->
+<a class="cateitem" target="_blank" href="<!--{$s_url}-->/itemlist.php?cid=<!--{$s.id}-->"><!--{$s.gname}--></a> 
+<!--{/foreach}-->
+
+ <a  href="<!--{$s_url}-->" target="_blank" class="more">更多>></a> </div>
+<div class="top-five clearfix">
+  <ul class="topFive clearfix products">
+    <li class="large"> <a ref="nav" target="_blank" href='http://j.renren.com/plaza/1207311131540641401'><img src='http://fmn.rrimg.com/fmn062/guangjie/20120809/1430/original_DelD_0b50000004f1118f.jpg' alt='两件套'/> <span class="hearts pngFix">￥108.00</span> <span class="picName">江苏 南京</span> </a> </li>
+   
+   <!--{foreach from=$items[$d.id] item=i}-->
+    <li > <a  target="_blank" href='<!--{$s_url}-->/gourl.php?id=<!--{$i.id}-->'><img  src='<!--{$i.image}-->' alt='<!--{$i.ename}-->'/> <span class="hearts pngFix">￥<!--{$i.price}--></span> <span class="picName"><!--{if $i.item_state != $i.item_city}--><!--{$i.item_state}--> <!--{/if}--><!--{$i.item_city}--></span> </a> </li>
+    <!--{/foreach}-->
+    
+    
+  </ul>
+</div>
+
+<!-- end  -->
+<!--{/foreach}-->
+
+<!--{include file='footer'}-->

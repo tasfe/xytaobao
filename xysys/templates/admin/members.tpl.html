@@ -1,0 +1,507 @@
+<!--{include file='header'}-->
+
+
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<!--{if $act == 'add' or $act=='edit'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    Add
+    <!--{else}-->
+    Edit
+    <!--{/if}-->
+    Dealer</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+</div>
+<form action="<!--{$admin_file}-->?adm=members&opt=user_do" method="post" name="FORM">
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td  class="main_bleft">Contact Name:</td>
+        <td width="78%"  class="main_bright"><input class="input" name="doc[truename]"  value="<!--{$doc.truename}-->" size="30">
+          &nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td  class="main_bleft">Company Name:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[company]" value="<!--{$doc.company}-->" size="70"></td>
+      </tr>
+      
+      
+      <tr>
+        <td  class="main_bleft">Address:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[address]" value="<!--{$doc.address}-->" size="70"></td>
+      </tr>
+      
+      
+      <tr>
+        <td  class="main_bleft">Tel:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[phone]" value="<!--{$doc.phone}-->" size="30"></td>
+      </tr>
+      
+      
+      <tr>
+        <td  class="main_bleft">Fax:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[fax]" value="<!--{$doc.fax}-->" size="30"></td>
+      </tr>
+      
+      
+      <tr>
+        <td  class="main_bleft">Email Address:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[email]" value="<!--{$doc.email}-->" size="70"></td>
+      </tr>
+      
+      
+      <tr>
+        <td  class="main_bleft">Sales ID:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[salesid]" value="<!--{$doc.salesid}-->" size="30"></td>
+      </tr>
+      
+      <tr>
+        <td  class="main_bleft">Customer ID:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[account]" value="<!--{$doc.account}-->" size="30"></td>
+      </tr>
+      
+     
+      <tr>
+        <td  class="main_bleft">User Name:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="doc[username]" value="<!--{$doc.username}-->" size="30"></td>
+      </tr>
+      
+      <tr>
+        <td  class="main_bleft">Password:</td>
+        <td bgcolor="#ffffff" class="main_bright"><input class="input" name="password" type="password" value="" size="30"></td>
+      </tr>
+      
+      <tr>
+        <td  class="main_bleft">Notify Customer:</td>
+        <td bgcolor="#ffffff" class="main_bright">
+        
+        
+        <input class="input"  type="radio"  name="isnotify" value="1"  > Yes
+        <input class="input"  type="radio"  name="isnotify" value="0" checked="checked"  > no
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+          <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+          <input type="submit" name="Submit" value="Save" class="btn"/>
+          <input type="reset" name="Submit2" value="Reset" class="btn" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <script language="javascript">
+
+	
+	//var oFCKeditor = new FCKeditor( 'contents' ) ;
+	//oFCKeditor.ReplaceTextarea() ;
+  </script>
+</form>
+
+<!--{elseif $act == 'contact'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"> Contact Us Form</div>
+</div>
+
+
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+
+        
+        
+<table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+  <tr class="tr2">
+    <td >No.</td>
+    <td>Last Name</td>
+	<td>First Name</td>
+	<td>Company Name</td>
+    <td>Company Type</td>
+	<td>Address</td>
+    
+    <td>State</td>
+    <td>Country</td>
+    <td>Zipcode</td>
+    <td>Phone</td>
+    <td>Email Address</td>
+    
+    <td>Add Date</td>
+
+    <td>Operate</td>
+  </tr>
+  <!--{foreach from=$docs item=d}-->
+  <tr class="listtr">
+    <td><!--{$d.id}--></td>
+    <td><!--{$d.lastname}--></td>
+	<td><!--{$d.firstname}-->&nbsp;</td>
+	<td><!--{$d.company}-->&nbsp;</td>
+    <td><!--{$d.company_type}-->&nbsp;</td>
+	<td><!--{$d.address}-->&nbsp;</td>
+    
+    <td><!--{$d.state}-->&nbsp;</td>
+    <td><!--{$d.country}-->&nbsp;</td>
+    <td><!--{$d.zipcode}-->&nbsp;</td>
+    
+    <td><!--{$d.phone}-->&nbsp;</td>
+    
+    <td><!--{$d.email}-->&nbsp;</td>
+    
+
+    
+    <td><!--{$d.adddate}--></td>
+    <td >
+<a target="_blank" href="<!--{$admin_file}-->?adm=members&opt=viewcontact&id=<!--{$d.id}-->"><img src="images/page_view.png"    align="absmiddle" alt="Del" /></a>
+    
+	<a href="<!--{$admin_file}-->?adm=members&opt=delcontact&id=<!--{$d.id}-->"><img src="images/del.gif" onClick="return confirm('Confirm delete?');"  align="absmiddle" alt="Del" /></a>
+	
+    </td>
+  </tr>
+  <!--{/foreach}-->
+
+</table>
+
+<div class="pages"><!--{$pages}--></div>
+</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+
+<!--{elseif $act == 'viewviewcontact'}-->
+<div style="margin:20px;">
+<table width="600" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="news_text" height="30" bgcolor="#EFEFEF" colspan="2">&nbsp;&nbsp;Mandatory fields are marked with asterisk (<font color="#FF0000">*</font>)</td>
+  </tr>
+  <tr>
+    <td width="28%" height="32" class="news_text"> Last Name:(<font color="#FF0000">*</font>)</td>
+    <td  class="news_text"><input type="text" name="d[lastname]" value="<!--{$doc.lastname}-->" class="required" minlength="4" size="15" /></td>
+  </tr>
+  <tr>
+    <td height="34" class="news_text">First Name:(<font color="#FF0000">*</font>)</td>
+    <td  class="news_text"><input type="text" name="d[firstname]" class="required" value="<!--{$doc.firstname}-->" size="15" /></td>
+  </tr>
+  <tr>
+    <td height="34" class="news_text">Company Name:(<font color="#FF0000">*</font>) </td>
+    <td  class="news_text"><input type="text" name="d[company]" value="<!--{$doc.company}-->" class="required" minlength="6" size="30" /></td>
+  </tr>
+  <tr>
+    <td height="34" class="news_text">Company Type:(<font color="#FF0000">*</font>) </td>
+    <td  class="news_text"><!--{$doc.company_type}--></td>
+  </tr>
+  <tr>
+    <td height="37" class="news_text">Address:(<font color="#FF0000">*</font>) </td>
+    <td  class="news_text"><input type="text" name="d[address]" value="<!--{$doc.address}-->" minlength="10" class="required" size="40" /></td>
+  </tr>
+  <tr>
+    <td height="31" class="news_text">State / Province:(<font color="#FF0000">*</font>)</td>
+    <td  class="news_text"><input type="text" name="d[state]" value="<!--{$doc.state}-->" class="required" size="38" /></td>
+  </tr>
+  <tr>
+    <td height="31" class="news_text">Country:(<font color="#FF0000">*</font>)</td>
+    <td  class="news_text"><!--{$doc.country}--></td>
+  </tr>
+  <tr>
+    <td height="31" class="news_text">Zip Code:(<font color="#FF0000">*</font>)</td>
+    <td  class="news_text"><input type="text" name="d[zipcode]" value="<!--{$doc.zipcode}-->" class="required" size="8" /></td>
+  </tr>
+  <tr>
+    <td height="31" class="news_text">Phone:(<font color="#FF0000">*</font>) </td>
+    <td  class="news_text"><input type="text" name="d[phone]" value="<!--{$doc.phone}-->" class="required" minlength="5" size="15" /></td>
+  </tr>
+  <tr>
+    <td height="35" class="news_text">Email:(<font color="#FF0000">*</font>) </td>
+    <td  class="news_text"><input type="text" name="d[email]" value="<!--{$doc.email}-->" class="required email" size="20" /></td>
+  </tr>
+  <tr>
+    <td class="news_text" height="25"  bgcolor="#EFEFEF" colspan="2">&nbsp;&nbsp;Message</td>
+  </tr>
+  <tr>
+    <td class="news_text" colspan="2"><textarea name="d[message]" rows="6" style="width:502px;"><!--{$doc.message}-->
+</textarea></td>
+  </tr>
+</table>
+
+</div>
+
+<!--{elseif $act == 'vieworders'}-->
+  <style>
+input {
+	border-bottom:1px solid #000;
+	margin:0 0 0 2px;
+	border-top:1px solid #FFF;
+	border-left:1px solid #FFF;
+	border-right:1px solid #FFF;
+	
+}
+</style>
+
+<table width="640" align="center" bgcolor="#000000" cellpadding="1" cellspacing="1" id="myform"  >
+                
+                <form action="orders.php" method="post"  id="commentForm">
+                  <tr>
+                    <td bgcolor="#FFFFFF" class="news_text" height="50"  colspan="4" align="center"> <span style="font-size:26px; color:#000; font-family:Arial, Helvetica, sans-serif;">Order Form</span></td>
+                  </tr>
+                  
+                  <tr>
+                    <td width="24%" height="32" bgcolor="#FFFFFF" class="news_text"> Customer ID:</td>
+                    <td width="27%" bgcolor="#FFFFFF"  class="news_text"> <input type="text" name="d[customers_id]" value="<!--{$doc.customers_id}-->" class="required" minlength="4" size="15" /></td>
+                    <td width="13%" bgcolor="#FFFFFF"  class="news_text">Date:</td>
+                    <td width="36%" bgcolor="#FFFFFF"  class="news_text"> <input type="text" name="d[date_purchased]" class="required" value="<!--{$doc.date_purchased}-->" size="15" /></td>
+                  </tr>
+                   
+                   <tr>
+                    <td height="34" bgcolor="#FFFFFF" class="news_text">Company:</td>
+                    
+                    <td bgcolor="#FFFFFF"  class="news_text"> <input type="text" name="d[company]" value="<!--{$doc.company}-->" class="required" minlength="6" size="20" /></td>
+                    
+                     <td width="13%" bgcolor="#FFFFFF"  class="news_text">Contact:</td>
+                    <td width="36%" bgcolor="#FFFFFF"  class="news_text"> <input type="text" name="d[contact]" class="required" value="<!--{$doc.contact}-->" size="15" /></td>
+                    </tr>
+                 
+                  
+                  
+                 
+                  
+                   <tr>
+                    <td height="31" bgcolor="#FFFFFF" class="news_text">Phone:</td>
+                    <td bgcolor="#FFFFFF"   class="news_text"><input type="text" name="d[phone]" value="<!--{$doc.phone}-->" class="required" minlength="5" size="15" /></td>
+      
+                    <td bgcolor="#FFFFFF"  class="news_text">Email:</td>
+                    <td bgcolor="#FFFFFF"   class="news_text">&nbsp;<!--{$doc.email}--></td>
+                    </tr>
+                    <tr>
+                     <td height="37" bgcolor="#FFFFFF" class="news_text">Shipping Address:</td>
+                     <td colspan="3" bgcolor="#FFFFFF"  class="news_text"><input type="text" name="d[address]" value="<!--{$doc.address}-->" minlength="10" class="required" size="70" /></td>
+                   </tr>
+                  
+                 
+                    <tr>
+                      <td height="40" colspan="4" bgcolor="#FFFFFF" class="news_text">
+                      
+
+           <br />
+           
+                      
+<table width="600" border="0" cellspacing="1" cellpadding="0" align="center">
+  <tr>
+    <td height="25" bgcolor="#FFFFFF"><strong>&nbsp;Item No.</strong></td>
+    <td bgcolor="#FFFFFF"><strong>&nbsp;Item Description</strong></td>
+    <td bgcolor="#FFFFFF"><strong>&nbsp;Quantity</strong></td>
+    <td bgcolor="#FFFFFF"><strong>&nbsp;Unit</strong></td>
+    <td bgcolor="#FFFFFF"><strong>&nbsp;Unit Price($)</strong></td>
+    <td bgcolor="#FFFFFF"><strong>&nbsp;Amount($)</strong></td>
+  </tr>
+  <!--{foreach from=$docs  item=d}-->
+  
+  <tr>
+    <td height="22" bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[itemno][]" value="<!--{$d.itemno}-->"  size="12" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[descr][]"  value="<!--{$d.descr}-->" size="15" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[qty][]"  value="<!--{$d.qty}-->" size="4" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[unit][]"  value="<!--{$d.unit}-->" size="6" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[price][]"  value="<!--{$d.price}-->" size="6" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;<input type="text" name="item[amount][]"  value="<!--{$d.amount}-->" size="6" /></td>
+  </tr>
+
+<!--{/foreach}-->
+
+
+</table>
+
+
+
+              <br />
+        
+                      
+                      </td>
+                    </tr>
+                     <tr>
+                    <td height="40" colspan="3" bgcolor="#FFFFFF" class="news_text">Notes:<!--{$doc.notes}--></td>
+                    <td bgcolor="#FFFFFF" class="news_text" >Net Product Total: $<!--{$doc.total}--> </td>
+                  </tr>
+                  
+                  </form>
+                </table>
+
+<!--{elseif $act == 'orders'}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Purchase Order Form</div>
+</div>
+
+
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+
+        
+        
+<table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+  <tr class="tr2">
+    <td >No.</td>
+    <td>Customer ID</td>
+	<td>Date</td>
+	<td>Company</td>
+    <td>Contact</td>
+	<td>Email</td>
+    
+    <td>Phone</td>
+    <td>Address</td>
+    <td>Total</td>
+    <td>Add Date</td>
+
+    <td>Operate</td>
+  </tr>
+  <!--{foreach from=$docs item=d}-->
+  <tr class="listtr">
+    <td><!--{$d.orders_id}--></td>
+    <td><!--{$d.customers_id}--></td>
+	<td><!--{$d.date_purchased}-->&nbsp;</td>
+	<td><!--{$d.company}-->&nbsp;</td>
+    <td><!--{$d.contact}-->&nbsp;</td>
+    <td><!--{$d.email}-->&nbsp;</td>
+    <td><!--{$d.phone}-->&nbsp;</td>
+	<td><!--{$d.address}-->&nbsp;</td>
+    
+    <td><!--{$d.total}-->&nbsp;</td>
+    
+    
+    <td><!--{$d.adddate}--></td>
+    <td >
+
+    <a target="_blank" href="<!--{$admin_file}-->?adm=members&opt=vieworders&id=<!--{$d.orders_id}-->"><img src="images/page_view.png"  align="absmiddle" alt="View" /></a>
+	
+	<a href="<!--{$admin_file}-->?adm=members&opt=delorders&id=<!--{$d.orders_id}-->"><img src="images/del.gif" onClick="return confirm('Confirm delete?');"  align="absmiddle" alt="Del" /></a>
+	
+    </td>
+  </tr>
+  <!--{/foreach}-->
+
+</table>
+
+<div class="pages"><!--{$pages}--></div>
+</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{else}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Dealer</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=members&opt=addnew" >Add</a></div>
+</div>
+
+
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td style="text-align:left">
+	<form method="get" action="">
+
+      Username:&nbsp;&nbsp;
+      <input name="s" type="text" class="input" id="keyword" size="30" />&nbsp;
+      <input type="hidden" name="adm" value="members" />
+      <input type="hidden" name="opt" value="all" />
+      &nbsp;
+      <input type="button" name="Submit2" value="Search" onclick="dos()" class="btn" /> &nbsp;&nbsp;
+	  </form>
+	  </td>
+  </tr>
+</table>
+        
+        
+<table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+  <tr class="tr2">
+    <td>No.</td>
+    <td>Username</td>
+	<td>Contact Name</td>
+	<td>Company Name</td>
+	<td>Address</td>
+    <td>Tel</td>
+    <td>Fax</td>
+    <td>Email Address</td>
+    <td>Sales ID #</td>
+    <td>Account Number</td>
+
+    <td>Add Date</td>
+    <td>Notify</td>
+    <td>Operate</td>
+  </tr>
+  <!--{foreach from=$docs item=d}-->
+  <tr class="listtr">
+    <td><!--{$d.id}--></td>
+    <td><!--{$d.username}--></td>
+	<td><!--{$d.truename}-->&nbsp;</td>
+	<td><!--{$d.company}-->&nbsp;</td>
+	<td><!--{$d.address}-->&nbsp;</td>
+    <td><!--{$d.phone}-->&nbsp;</td>
+    <td><!--{$d.fax}-->&nbsp;</td>
+    <td><!--{$d.email}-->&nbsp;</td>
+    <td><!--{$d.salesid}-->&nbsp;</td>
+    <td><!--{$d.account}-->&nbsp;</td>
+    
+
+    <td><!--{$d.regtime|date_format:"%Y-%m-%d %H:%M:%S"}--></td>
+    <td><!--{if $d.isnotify}-->Yes<!--{else}-->No<!--{/if}-->&nbsp;</td>
+    <td>
+
+<a href="<!--{$admin_file}-->?adm=members&opt=edit&id=<!--{$d.id}-->">
+	<img src="images/edit.gif" align="absmiddle" alt="Edit" /></a>
+    
+	<a href="<!--{$admin_file}-->?adm=members&opt=del&id=<!--{$d.id}-->">
+	<img src="images/del.gif" onClick="return confirm('Confirm delete?');"  align="absmiddle" alt="Del" /></a>
+	
+    </td>
+  </tr>
+  <!--{/foreach}-->
+
+</table>
+
+<div class="pages"><!--{$pages}--></div>
+</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<script>
+function dos(){
+var s = $("#keyword").val();
+if(s!=''){
+location.href = '?adm=members&opt=all&s='+s+'&rank=<!--{$rank}-->';
+}
+}
+</script>
+<!--{/if}-->
+<!--{include file='footer'}-->

@@ -1,0 +1,77 @@
+<!--{include file='header'}-->
+<script language="javascript" src="fck365/fckeditor.js"></script>
+<!--{if $act == 'add' or $act=='edit'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt"><span class="nav">
+    <!--{if $act == 'add'}-->
+    Add
+    <!--{else}-->
+    Edit
+    <!--{/if}-->
+    Category</span></div>
+  <div style="float:right; margin-right:5px;"  class="bodytitletxt"><a href="javascript:void(0)" onclick="javascript:history.go(-1)">Back</a></div>
+</div>
+<form action="<!--{$admin_file}-->?adm=articles&opt=cate_do" method="post" name="FORM">
+  <table cellspacing="1" cellpadding="10" border="0" bgcolor="#e2f5bc" align="center" width="96%" style="margin-top: 6px;">
+    <tbody>
+      <tr>
+        <td  class="main_bleft">Name:</td>
+        <td   class="main_bright"><input class="input" name="cname"   value="<!--{$doc.cname}-->" size="70">
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td  class="main_bleft">Category:</td>
+        <td   class="main_bright"><select name="fid">
+            <option value="0" >ROOT</option>
+          </select></td>
+      </tr>
+      <tr>
+        <td colspan="2"class="main_btn"><input name="step" type="hidden" id="setp" value="<!--{$act}-->" />
+          <input name="id" type="hidden" id="id" value="<!--{$doc.id}-->" />
+          <input type="submit" name="Submit" value="Save" class="btn"/>
+          <input type="reset" name="Submit2" value="Reset" class="btn" /></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<!--{else}-->
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">Category</div>
+  <div style="float:left; margin-left:10px;"  class="bodytitletxt"><a href="<!--{$admin_file}-->?adm=articles&opt=cate&act=add" >Add</a></div>
+</div>
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+        <tr>
+          <td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr bgcolor="#FFFFFF">
+                <td height="4"></td>
+              </tr>
+            </table>
+            <form action="<!--{$admin_file}-->?adm=article&opt=cate" method="post" name="form1">
+              <table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+                <tr class="tr2">
+                  <td width="16%" ><strong>No.</strong></td>
+                  <td  ><strong>Category Name</strong></td>
+                  <td  ><strong>Publish Date</strong></td>
+                  <td width="10%"  ><strong>Operate</strong></td>
+                </tr>
+                <!--{foreach from=$docs item=d}-->
+                <tr class="listtr" >
+                  <td valign="middle"><!--{$d.id}--></td>
+                  <td align="left" valign="middle" style="padding-left:10px;"><!--{$d.cname}--></td>
+                  <td width="23%" valign="middle"><!--{$d.dateline|date_format:"%Y-%m-%d %H:%M:%S"}--></td>
+                  <td valign="middle"><a href="<!--{$admin_file}-->?adm=articles&opt=cate&act=edit&id=<!--{$d.id}-->"><img src="images/edit.gif" align="absmiddle" alt="<!--{$lang.ico_edit}-->" /></a> <a href="<!--{$admin_file}-->?adm=articles&opt=cate&act=del&id=<!--{$d.id}-->"><img src="images/delete_g.gif" align="absmiddle" alt="<!--{$lang.ico_del}-->" /></a></td>
+                </tr>
+                <!--{/foreach}-->
+              </table>
+            </form></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!--{/if}-->
+<!--{include file='footer'}-->

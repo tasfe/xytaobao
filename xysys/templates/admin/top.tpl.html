@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>程管理系统</title>
+<link href="css/css_top.css" rel="stylesheet" type="text/css" />
+<script>
+function Logout()
+{
+	try {
+		parent.location.href='?todo=logout';
+	}
+	catch(e)
+	{
+		location.href='?todo=logout';
+	}
+}
+</script>
+<script language='javascript'>
+
+function Nav(){
+	if(window.navigator.userAgent.indexOf("MSIE")>=1) return 'IE';
+  else if(window.navigator.userAgent.indexOf("Firefox")>=1) return 'FF';
+  else return "OT";
+}
+
+var preID = 0;
+
+function OpenMenu(url){
+   if(Nav()=='IE'){
+     top.document.frames.main.location = url;
+  
+   }else{
+	   
+     top.document.getElementById("mainFrame").src = url;
+    
+   }
+}
+
+var preFrameW = '160,*';
+var FrameHide = 0;
+function ChangeMenu(way){
+	var addwidth = 10;
+	var fcol = top.document.all.bodyFrame.cols;
+	if(way==1) addwidth = 10;
+	else if(way==-1) addwidth = -10;
+	else if(way==0){
+		if(FrameHide == 0){
+			preFrameW = top.document.all.bodyFrame.cols;
+			top.document.all.bodyFrame.cols = '0,*';
+			FrameHide = 1;
+			return;
+		}else{
+			top.document.all.bodyFrame.cols = preFrameW;
+			FrameHide = 0;
+			return;
+		}
+	}
+	fcols = fcol.split(',');
+	fcols[0] = parseInt(fcols[0]) + addwidth;
+	top.document.all.bodyFrame.cols = fcols[0]+',*';
+}
+
+function resetBT(){
+	if(preID>0) document.getElementById("d"+preID).className = 'bdd';
+	preID = 0;
+}
+
+</script>
+
+
+</head>
+<body>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+    <TR>
+      <TD height="44" background="images/administration1.gif"><IMG height=44 
+      src="images/administration2.gif" width=336></TD>
+      <TD background="images/administration1.gif" align="right">
+       <a href="../" target="_blank"> <span style="color:#FFF;"><!--{$lang.home}--></span></a> | 
+       <a href="<!--{$admin_file}-->?adm=cpanel&opt=logout" title="Login out" target="_parent" onClick="return loginOut();"><span style="color:#FFF;"><!--{$lang.logoff}--></span></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</body>
+</html>

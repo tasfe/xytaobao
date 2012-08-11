@@ -1,0 +1,74 @@
+<!--{include file='header'}-->
+
+<div class="bodytitle">
+  <div class="bodytitleleft"></div>
+  <div class="bodytitletxt">分类列表</div>
+</div>
+
+
+<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+  <td><table width='96%' border='0' cellpadding='0' cellspacing='0' align="center" class="tbtitle">
+    <tr>
+      <td align='center' valign='top'>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr bgcolor="#FFFFFF">
+            <td height="4"></td>
+          </tr>
+        </table>
+        
+        <!--table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="tr4">
+    <td style="text-align:left">
+	<form method="get">
+
+      :&nbsp;&nbsp;
+      <input name="keyword" type="text" class="input" id="keyword" size="10" />&nbsp;
+      &nbsp;
+      <input type="button" name="Submit2" value="查找" onclick="dos()" class="btn" /> &nbsp;&nbsp;支持模糊搜索
+	  </form>
+	  </td>
+  </tr>
+</table-->
+
+
+<table width="100%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="	background:#E2F5BC;">
+  <tr class="tr2">
+    <td width="5%">&nbsp;</td>
+    <td>分类名称</td>
+    <td>父ID</td>
+	<td>分类ID</td>
+	<td>is_parent</td>
+    <td>sort_order</td>
+    <td>status</td>
+    <td>last_modified</td>
+    <td>管理</td>
+  </tr>
+  
+
+      <!--{foreach from=$docs key=key item=d}-->
+     <tr class="listtr">
+     <td><input name="did[]" type="checkbox" id="del[]" value="<!--{$d->cid}-->" /><!--{$key}--></td>
+        <td><a href="<!--{$admin_file}-->?adm=tbapi&opt=cate&pid=<!--{$d->cid}-->" ><!--{$d->name}--></a>&nbsp;</td>
+        <td><!--{$d->parent_cid}-->&nbsp;</td>
+<td><!--{$d->cid}-->&nbsp;</td>
+<td><!--{$d->is_parent}-->&nbsp;</td>
+<td><!--{$d->sort_order}-->&nbsp;</td>
+<td><!--{$d->status}-->&nbsp;</td>
+<td><!--{$d->last_modified}-->&nbsp;</td>
+        <td>
+
+<a href="<!--{$admin_file}-->?adm=tbapi&opt=items&cid=<!--{$d->cid}-->" target="_blank" >商品列表</a>
+<a href="<!--{$admin_file}-->?adm=tbapi&opt=cate&act=import&pid=<!--{$d->cid}-->" target="_blank" >导入分类</a>
+</a>
+     &nbsp;
+        </td>
+         </tr>
+      <!--{/foreach}-->
+
+    </table>
+
+ <!--{$pages}-->
+
+
+<!--{include file='footer'}-->
